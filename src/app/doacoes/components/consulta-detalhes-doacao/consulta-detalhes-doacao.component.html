@@ -1,0 +1,35 @@
+<div class="basic-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{doacao.descricao}}</mat-card-title>
+      <mat-card-subtitle>{{localizacao}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <img mat-card-image *ngIf="doacao.imagens.length > 0" [src]="doacao.imagens[0].safeUpload">
+<!--    <img *ngIf="doacao.imagens.length > 0" class="img-list" [src]="doacao.imagens[0].safeUpload" />-->
+    <mat-card-content>
+      <form fxLayoutAlign="center">
+        <mat-list>
+          <mat-list-item>
+            <div mat-line><mat-label>Mais informações:</mat-label></div>
+            <div mat-line>
+              <p>{{doacao.detalhes}}</p>
+            </div>
+          </mat-list-item>
+          <mat-list-item>
+            <div mat-line><mat-label>Quem está doando?</mat-label></div>
+            <div mat-line>
+              <mat-icon>account_circle</mat-icon> {{doacao.usuario.nome}}
+            </div>
+            <div mat-line *ngIf="doacao.usuario.telefone != null">
+              <mat-icon>call</mat-icon> {{doacao.usuario.telefone}}
+            </div>
+            <div mat-line *ngIf="doacao.usuario.email != null">
+              <mat-icon>email</mat-icon> {{doacao.usuario.email}}
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

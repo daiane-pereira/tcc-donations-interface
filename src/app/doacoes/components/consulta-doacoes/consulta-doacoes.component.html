@@ -1,0 +1,83 @@
+<div class="basic-container">
+<mat-card>
+<form [formGroup]="filtrosDoacao" (ngSubmit)="consultarDoacoes()" fxLayoutAlign="center">
+  <mat-list>
+    <mat-list-item role="listitem">
+
+      <mat-form-field >
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="estado" name="estado" (selectionChange)="consultarCidades()">
+          <mat-option *ngFor="let estado of this.estados" [value]="estado.codigoIbge">
+            {{estado.nome}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-list-item>
+
+    <mat-list-item>
+      <mat-form-field>
+        <mat-label>Cidade</mat-label>
+        <mat-select formControlName="cidade" name="cidade" (selectionChange)="consultarBairros()">
+          <mat-option *ngFor="let cidade of this.cidades" [value]="cidade.codigoIbge">
+            {{cidade.nome}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-list-item>
+
+    <mat-list-item>
+      <mat-form-field>
+        <mat-label>Bairro</mat-label>
+        <mat-select formControlName="bairro" name="bairro">
+          <mat-option *ngFor="let bairro of this.bairros" [value]="bairro.id">
+            {{bairro.nome}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-list-item>
+
+    <mat-list-item>
+      <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="categoria" name="categoria">
+          <mat-option *ngFor="let categoria of this.categorias" [value]="categoria.id">
+            {{categoria.descricao}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-list-item>
+
+    <mat-list-item>
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" formControlName="descricao" name="descricao">
+      </mat-form-field>
+    </mat-list-item>
+
+    <mat-list-item>
+      <button mat-raised-button color="primary">Pesquisar</button>
+    </mat-list-item>
+  </mat-list>
+</form>
+</mat-card>
+
+<br>
+
+<mat-card *ngIf="this.doacoes.length > 0">
+  <mat-card-header>
+    <mat-card-title>Doações encontradas</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <a mat-list-item *ngFor="let doacao of this.doacoes" routerLink="/doacoes/detalhes/{{doacao.id}}">
+        <img *ngIf="doacao.imagens.length > 0" class="img-list" [src]="doacao.imagens[0].safeUpload" />
+        <div mat-line>{{doacao.descricao}}</div>
+        <p mat-line>Localização: {{doacao.bairro.nome}}, {{doacao.cidade.nome}}/{{doacao.estado.uf}}</p>
+        <mat-divider></mat-divider>
+        <br>
+      </a>
+    </mat-list>
+  </mat-card-content>
+
+</mat-card>
+</div>

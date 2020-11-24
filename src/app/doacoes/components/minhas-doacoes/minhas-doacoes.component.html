@@ -1,0 +1,83 @@
+<div class="basic-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Minhas Doações</mat-card-title>
+      <mat-card-subtitle>Confira, edite e compartilhe suas doações.</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form fxLayoutAlign="center">
+        <mat-tab-group>
+          <mat-tab label="Ativas">
+            <mat-list>
+              <a mat-list-item *ngFor="let doacao of this.doacoesAtivas">
+                <img *ngIf="doacao.imagens.length > 0" class="img-list" [src]="doacao.imagens[0].safeUpload" />
+                <div mat-line>{{doacao.descricao}}</div>
+                <br>
+                <div mat-line>
+                  <button mat-button color="primary" aria-label="Edição de doação" (click)="abrirEdicaoDoacao(doacao)">
+                    Editar <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-button color="primary">
+                    <iframe
+                      src="https://www.facebook.com/plugins/share_button.php?href=http://www.portalbr4.com.br/&layout=button&size=small&width=105&height=20&appId"
+                      width="105"
+                      height="20"
+                      style="border:none;overflow:hidden"
+                      scrolling="no"
+                      frameborder="0"
+                      allowTransparency="true"
+                      allow="encrypted-media">
+                    </iframe>
+                  </button>
+                </div>
+                <mat-divider></mat-divider>
+              </a>
+            </mat-list>
+          </mat-tab>
+
+          <mat-tab label="Reservadas">
+            <mat-list>
+              <a mat-list-item *ngFor="let doacao of this.doacoesReservadas">
+                <img *ngIf="doacao.imagens.length > 0" class="img-list" [src]="doacao.imagens[0].safeUpload" />
+                <div mat-line>{{doacao.descricao}}</div>
+                <div mat-line>
+                  <button mat-button color="primary" aria-label="Edição de doação" (click)="abrirEdicaoDoacao(doacao)">
+                    Editar <mat-icon style="font-size: 20px;">edit</mat-icon>
+                  </button>
+                  <button mat-button color="primary">
+                    <iframe
+                      src="https://www.facebook.com/plugins/share_button.php?href=http://www.portalbr4.com.br/&layout=button&size=small&width=105&height=20&appId"
+                      width="105"
+                      height="20"
+                      style="border:none;overflow:hidden"
+                      scrolling="no"
+                      frameborder="0"
+                      allowTransparency="true"
+                      allow="encrypted-media">
+                    </iframe>
+                  </button>
+                </div>
+                <mat-divider></mat-divider>
+              </a>
+            </mat-list>
+          </mat-tab>
+
+          <mat-tab label="Inativas">
+            <mat-list>
+              <a mat-list-item *ngFor="let doacao of this.doacoesInativas">
+                <img *ngIf="doacao.imagens.length > 0" class="img-list" [src]="doacao.imagens[0].safeUpload" />
+                <div mat-line>{{doacao.descricao}}</div>
+                <div mat-line>
+                  <button mat-button color="primary" aria-label="Edição de doação" (click)="abrirEdicaoDoacao(doacao)">
+                    Editar <mat-icon style="font-size: 20px;">edit</mat-icon>
+                  </button>
+                </div>
+              </a>
+            </mat-list>
+          </mat-tab>
+        </mat-tab-group>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

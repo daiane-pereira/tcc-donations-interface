@@ -1,0 +1,31 @@
+<mat-toolbar color="primary" class="toolbar">
+  <mat-toolbar-row>
+    <button mat-icon- [matMenuTriggerFor]="menu" class="toolbar-button" aria-label="Menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/autenticacao/login">
+        <span>Entrar</span>
+      </button>
+      <button mat-menu-item routerLink="/doacoes/consulta">
+        <span>Buscar</span>
+      </button>
+      <button mat-menu-item *ngIf="this.usuarioAutenticado()" routerLink="/doacoes/cadastro">
+        <span>Doar</span>
+      </button>
+      <button mat-menu-item *ngIf="this.usuarioAutenticado()" routerLink="/doacoes/minhas-doacoes">
+        <span>Minhas doações</span>
+      </button>
+      <button mat-menu-item *ngIf="this.usuarioAutenticado()" (click)="this.sair()">
+        <span>Sair</span>
+      </button>
+    </mat-menu>
+
+    <img src="../../assets/logo.png" />
+    <span class="spacer"></span>
+    <button *ngIf="this.usuarioAutenticado()" mat-raised-button color="accent" routerLink="/doacoes/cadastro">
+      Doar
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="principal"><router-outlet></router-outlet></div>

@@ -1,0 +1,28 @@
+.toolbar {
+
+  padding: 5px 0;
+
+  img {
+  filter: drop-shadow(1px 1px 1px rgba(black, 0.7));
+    height: 85%;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+}
+
+.toolbar-button {
+  background: unset;
+  border: unset;
+}
+
+.button-icon {
+  font-size: 20px;
+}
+
+.principal {
+  display: block;
+  max-width: 600px;
+  margin: 0 auto;
+}

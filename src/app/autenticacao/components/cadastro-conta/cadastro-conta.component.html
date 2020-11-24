@@ -1,0 +1,59 @@
+<div class="basic-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Crie a sua conta</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form fxLayoutAlign="center" [formGroup]="formConta" class="form-cadastro">
+        <div>
+          <mat-form-field>
+            <mat-label>Nome completo</mat-label>
+            <input matInput type="text" formControlName="nome" name="nome" required />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <mat-label>Apelido</mat-label>
+            <input matInput type="text" formControlName="apelido" name="apelido" required />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <mat-label>Telefone</mat-label>
+            <input matInput type="text" formControlName="telefone" name="telefone" />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <mat-label>E-mail</mat-label>
+            <input matInput type="text" formControlName="email" name="email" required />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" formControlName="senha" name="senha" required />
+          </mat-form-field>
+        </div>
+
+        <div class="tipo-comunicacao">
+          <mat-label>Como gostaria de se comunicar?</mat-label>
+          <div *ngFor="let tipoComunicacao of this.tiposComunicacao">
+            <mat-checkbox formControlName="comunicacao" name="tipoComunicacao{{tipoComunicacao.id}}">
+              {{tipoComunicacao.descricao}}
+            </mat-checkbox>
+          </div>
+        </div>
+
+        <div>
+          <button mat-raised-button color="primary">Cadastrar</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

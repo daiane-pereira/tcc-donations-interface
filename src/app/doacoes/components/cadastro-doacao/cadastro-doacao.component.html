@@ -1,0 +1,114 @@
+<div class="basic-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Descreva o item que deseja doar</mat-card-title>
+      <mat-card-subtitle>Clique em "próximo" para os passos seguintes.</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-vertical-stepper #stepper>
+      <mat-step [stepControl]="formInfosDoacao">
+        <form [formGroup]="formInfosDoacao">
+          <ng-template matStepLabel>Informações</ng-template>
+          <div>
+            <mat-form-field>
+              <mat-label>Dê um título para sua doação</mat-label>
+              <input matInput type="text" formControlName="descricao" name="descricao" required>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <mat-label>Descreva em detalhes o que está doando</mat-label>
+              <textarea matInput formControlName="detalhes" name="detalhes" required></textarea>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <mat-label>Em qual categoria melhor se encaixa?</mat-label>
+              <mat-select formControlName="categoria" name="categoria" required>
+                <mat-option *ngFor="let categoria of this.categorias" [value]="categoria.id">
+                  {{categoria.descricao}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <mat-label>Em qual estado?</mat-label>
+              <mat-select formControlName="estado" name="estado" (selectionChange)="consultarCidades()" required>
+                <mat-option *ngFor="let estado of this.estados" [value]="estado.codigoIbge">
+                  {{estado.nome}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <mat-label>Em qual cidade?</mat-label>
+              <mat-select formControlName="cidade" name="cidade" (selectionChange)="consultarBairros()" required>
+                <mat-option *ngFor="let cidade of this.cidades" [value]="cidade.codigoIbge">
+                  {{cidade.nome}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <mat-label>Em qual bairro?</mat-label>
+              <mat-select formControlName="bairro" name="bairro" required>
+                <mat-option *ngFor="let bairro of this.bairros" [value]="bairro.id">
+                  {{bairro.nome}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="this.edicao">
+            <mat-form-field>
+              <mat-label>Em qual status está?</mat-label>
+              <mat-select formControlName="status" name="status" required>
+                <mat-option *ngFor="let status of this.statusDoacao" [value]="status.descricao">
+                  {{status.descricao}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <mat-step [stepControl]="formImagensDoacao">
+            <form [formGroup]="formImagensDoacao">
+              <ng-template matStepLabel>Fotos</ng-template>
+              <div>
+                <input type="file" class="upload" accept="*image/*" multiple formControlName="imagens" name="imagens"
+                  (change)="selecionarImagens($event)">
+              </div>
+              <br>
+              <div>
+                <button class="float-left" mat-raised-button matStepperPrevious>
+                  <mat-icon aria-hidden="false" aria-label="Voltar">navigate_before</mat-icon>Voltar
+                </button>
+                <button class="float-right" mat-raised-button matStepperNext>Próximo <mat-icon aria-hidden="false"
+                    aria-label="Próximo">navigate_next</mat-icon>
+                  </button>
+              </div>
+              <br>
+            </form>
+          </mat-step>
+
+          <mat-step>
+            <ng-template matStepLabel>Confirmação</ng-template>
+            <p>Confirma os dados de cadastro da doação?</p>
+
+            <div class="">
+              <button class="pr-2" mat-raised-button color="primary" (click)="salvar()">Sim</button>
+              <button mat-raised-button color="warn" (click)="stepper.reset()">Cancelar</button>
+            </div>
+          </mat-step>
+        </form>
+      </mat-step>
+    </mat-vertical-stepper>
+  </mat-card>
+</div>

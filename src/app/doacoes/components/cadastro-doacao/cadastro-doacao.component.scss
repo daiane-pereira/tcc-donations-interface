@@ -1,0 +1,17 @@
+@import '@angular/material/button/_button-base';
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.pr-2 {
+    margin-right: 0.5em;
+}
+
+.upload::-webkit-file-upload-button {
+    @include mat-raised-button
+}

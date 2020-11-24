@@ -1,0 +1,32 @@
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+}
+
+.form-cadastro {
+  & > div:not(.tipo-comunicacao) {
+    height: 50px;
+  }
+
+  .tipo-comunicacao {
+    margin: 10px 0;
+    mat-label {
+      display: block;
+      padding-bottom: 8px;
+    }
+
+    & > div {
+      padding-left: 5px;
+    }
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+mat-card {
+  padding-bottom: 0;
+}
+
+
