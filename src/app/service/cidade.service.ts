@@ -8,7 +8,7 @@ import {Cidade} from '../model/cidade';
 })
 export class CidadeService {
 
-  apiUrl = 'http://localhost:34621/cidades';
+  apiUrl = 'https://tcc-donations-api.herokuapp.com/cidades';
 
   constructor(
     private httpClient: HttpClient

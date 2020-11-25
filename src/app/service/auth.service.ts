@@ -12,7 +12,7 @@ export class AuthService {
 
   public static usuarioAutenticado: Login;
 
-  private urlBase = 'http://localhost:34621/login';
+  private urlBase = 'https://tcc-donations-api.herokuapp.com/login';
 
   public constructor(
     private router: Router,

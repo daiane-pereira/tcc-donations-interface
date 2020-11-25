@@ -8,7 +8,7 @@ import {StatusDoacao} from '../model/statusDoacao';
 })
 export class StatusService {
 
-  private urlBase = 'http://localhost:34621/status';
+  private urlBase = 'https://tcc-donations-api.herokuapp.com/status';
 
   constructor(
     private httpClient: HttpClient
