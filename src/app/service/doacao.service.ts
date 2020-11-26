@@ -28,9 +28,9 @@ export class DoacaoService {
     return this.httpClient.get<DoacaoImagens>(url);
   }
 
-  public consultarPorStatus(descricaoStatus: string): Observable<DoacaoImagens[]> {
+  public consultarPorStatus(descricaoStatus: string): Observable<any> {
     const url = this.urlBase + '/status/' + descricaoStatus;
-    return this.httpClient.get<DoacaoImagens[]>(url, { headers: this.header });
+    return this.httpClient.get<any>(url, { headers: this.header });
   }
 
   public incluir(doacao: Doacao): Observable<DoacaoImagens> {

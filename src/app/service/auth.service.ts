@@ -27,7 +27,6 @@ export class AuthService {
   }
 
   public autenticar(credencial: Login): Observable<any> {
-    console.log(credencial);
     return this.enviarCredenciais(credencial).pipe(
       tap(() => {
         this.setUsuario(credencial);
