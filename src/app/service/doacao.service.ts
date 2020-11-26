@@ -33,9 +33,9 @@ export class DoacaoService {
     return this.httpClient.get<DoacaoImagens[]>(url, { headers: this.header });
   }
 
-  public incluir(doacao: Doacao): Observable<Doacao> {
+  public incluir(doacao: Doacao): Observable<DoacaoImagens> {
     this.converterParametrosParaTexto(doacao);
-    return this.httpClient.post<Doacao>(this.urlBase, doacao, { headers: this.header });
+    return this.httpClient.post<DoacaoImagens>(this.urlBase, doacao, { headers: this.header });
   }
 
   public alterar(doacaoId: number, doacao: Doacao): Observable<any> {
@@ -67,8 +67,6 @@ export class DoacaoService {
 
   private converterParametrosParaTexto(doacao: Doacao): Doacao {
     doacao.bairro.toString();
-    doacao.cidade.toString();
-    doacao.estado.toString();
     doacao.categoria.toString();
     return doacao;
   }

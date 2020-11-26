@@ -11,8 +11,5 @@ export class Doacao {
   public detalhes: string;
   public status: string;
   public categoria: Categoria;
-  public estado: Estado;
-  public cidade: Cidade;
   public bairro: Bairro;
-  public usuario: Usuario;
 }
