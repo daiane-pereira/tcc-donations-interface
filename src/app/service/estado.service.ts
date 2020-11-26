@@ -9,6 +9,7 @@ import { Estado } from '../model/estado';
 export class EstadoService {
 
   apiUrl = 'https://tcc-donations-api.herokuapp.com/estados';
+  //apiUrl = 'http://localhost:34621/estados';
 
   constructor(
     private httpClient: HttpClient

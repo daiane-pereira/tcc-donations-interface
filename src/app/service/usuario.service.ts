@@ -10,6 +10,7 @@ import {Usuario} from '../model/usuario';
 export class UsuarioService {
 
   private urlBase = 'https://tcc-donations-api.herokuapp.com/usuarios';
+  //private urlBase = 'http://localhost:34621/usuarios';
 
   private header = new HttpHeaders({ 'Content-Type': 'application/json' });
 

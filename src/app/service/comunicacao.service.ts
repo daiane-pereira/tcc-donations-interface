@@ -9,6 +9,7 @@ import {TipoComunicacao} from '../model/tipo-comunicacao';
 export class ComunicacaoService {
 
   private urlBase = 'https://tcc-donations-api.herokuapp.com/tipos-comunicacao';
+  //private urlBase = 'http://localhost:34621/tipos-comunicacao';
 
   constructor(
     private httpClient: HttpClient

@@ -9,6 +9,7 @@ import { Bairro } from '../model/bairro';
 export class BairroService {
 
   apiUrl = 'https://tcc-donations-api.herokuapp.com/bairros';
+  //apiUrl = 'http://localhost:34621/bairros';
 
   constructor(
     private httpClient: HttpClient
