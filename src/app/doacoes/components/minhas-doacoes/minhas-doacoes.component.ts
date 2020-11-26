@@ -5,6 +5,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import {Location} from '@angular/common';
+import { Doacao } from 'src/app/model/doacao';
 
 @Component({
   selector: 'app-minhas-doacoes',
@@ -82,5 +83,11 @@ export class MinhasDoacoesComponent implements OnInit {
         imagem.safeUpload = this.sanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + imagem.upload);
       });
     });
+  }
+
+  public gerarUrlCompartilhamento(doacao: Doacao) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(
+      "https://www.facebook.com/plugins/share_button.php?href=https://move-roda.herokuapp.com/doacoes/detalhes/" +
+      doacao.id + "&layout=button&size=small&width=105&height=20&appId");
   }
 }
