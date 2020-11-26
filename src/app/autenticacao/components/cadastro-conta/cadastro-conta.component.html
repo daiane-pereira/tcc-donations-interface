@@ -43,15 +43,13 @@
 
         <div class="tipo-comunicacao">
           <mat-label>Como gostaria de se comunicar?</mat-label>
-          <div *ngFor="let tipoComunicacao of this.tiposComunicacao">
-            <mat-checkbox formControlName="comunicacao" name="tipoComunicacao{{tipoComunicacao.id}}">
-              {{tipoComunicacao.descricao}}
-            </mat-checkbox>
+          <div formArrayName="comunicacao" *ngFor="let item of formConta.get('comunicacao').controls; let i = index" >
+            <mat-checkbox [formControlName]="i"> {{comunicacao[i]}} </mat-checkbox>
           </div>
         </div>
 
         <div>
-          <button mat-raised-button color="primary">Cadastrar</button>
+          <button mat-raised-button color="primary" (click)="incluirUsuario()">Cadastrar</button>
         </div>
       </form>
     </mat-card-content>

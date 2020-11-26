@@ -1,10 +1,10 @@
 import {TipoComunicacao} from './tipo-comunicacao';
 
-export class Usuario {
-
-  public id: number;
+export class Conta {
   public nome: string;
-  public tiposComunicacao: TipoComunicacao[];
+  public apelido: string;
   public email: string;
   public telefone: number;
+  public tiposComunicacao: [];
+  public senha: string;
 }
