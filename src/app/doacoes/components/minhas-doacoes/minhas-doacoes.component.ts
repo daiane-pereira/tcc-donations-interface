@@ -76,6 +76,13 @@ export class MinhasDoacoesComponent implements OnInit {
     this.router.navigateByUrl(urlComponenteCadastro, { state: {doacao: doacaoSelecionada} });
   }
 
+  public getUrlFacebook(doacao: DoacaoImagens) {
+    const url = `https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=https://move-roda.herokuapp.com/doacoes/detalhes/${doacao.id}&display=popup&ref=plugin&src=share_button`;
+    window.open(url);
+    // return `https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=https%3A%2F%2Fmove-roda.herokuapp.com%2Fdoacoes%2Fdetalhes%2F4%2F&display=popup&ref=plugin&src=share_button`;
+    // return `https://www.facebook.com/plugins/share_button.php?href=https://move-roda.herokuapp.com/doacoes/detalhes/${doacao.id}/&layout=button&size=small&width=105&height=20&appId`;
+  }
+
   private converterImagens(doacoes: DoacaoImagens[]) {
     doacoes.forEach(doacao => {
       doacao.imagens.forEach(imagem => {

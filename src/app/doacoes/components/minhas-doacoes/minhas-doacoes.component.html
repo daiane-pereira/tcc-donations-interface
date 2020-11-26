@@ -18,9 +18,12 @@
                   <button mat-button color="primary" aria-label="Edição de doação" (click)="abrirEdicaoDoacao(doacao)">
                     Editar <mat-icon>edit</mat-icon>
                   </button>
+<!--                  <a (click)="this.getUrlFacebook(doacao)">-->
+<!--                    Compartilhar-->
+<!--                  </a>-->
                   <button mat-button color="primary">
 <!--                    <iframe-->
-<!--                      src="https://www.facebook.com/plugins/share_button.php?href=https://move-roda.herokuapp.com/doacoes/detalhes/2/&layout=button&size=small&width=105&height=20&appId"-->
+<!--                      [src]="this.getUrlFacebook(doacao)"-->
 <!--                      width="105"-->
 <!--                      height="20"-->
 <!--                      style="border:none;overflow:hidden"-->
@@ -30,7 +33,7 @@
 <!--                      allow="encrypted-media">-->
 <!--                    </iframe>-->
                     <iframe
-                      src="https://www.facebook.com/plugins/share_button.php?href=https://move-roda.herokuapp.com/doacoes/&layout=button&size=small&width=105&height=20&appId"
+                      src="https://www.facebook.com/plugins/share_button.php?href=https://move-roda.herokuapp.com/doacoes/detalhes/2&layout=button&size=small&width=105&height=20&appId"
                       width="105"
                       height="20"
                       style="border:none;overflow:hidden"
