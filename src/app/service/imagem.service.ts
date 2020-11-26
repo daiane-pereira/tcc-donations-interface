@@ -9,6 +9,7 @@ import {Imagem} from '../model/imagem';
 export class ImagemService {
 
   private urlBase = 'https://tcc-donations-api.herokuapp.com/imagens';
+  //private urlBase = 'http://localhost:34621/imagens';
 
   constructor(
     private httpClient: HttpClient

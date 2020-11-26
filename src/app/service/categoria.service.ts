@@ -9,6 +9,7 @@ import { Categoria } from '../model/categoria';
 export class CategoriaService {
 
   apiUrl = 'https://tcc-donations-api.herokuapp.com/categorias';
+  //apiUrl = 'http://localhost:34621/categorias';
 
   constructor(
     private httpClient: HttpClient

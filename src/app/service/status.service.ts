@@ -9,6 +9,7 @@ import {StatusDoacao} from '../model/statusDoacao';
 export class StatusService {
 
   private urlBase = 'https://tcc-donations-api.herokuapp.com/status';
+  //private urlBase = 'http://localhost:34621/status';
 
   constructor(
     private httpClient: HttpClient
