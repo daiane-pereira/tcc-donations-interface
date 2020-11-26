@@ -13,9 +13,9 @@ import {Location} from '@angular/common';
 })
 export class MinhasDoacoesComponent implements OnInit {
 
-  public doacoesAtivas: DoacaoImagens[];
-  public doacoesReservadas: DoacaoImagens[];
-  public doacoesInativas: DoacaoImagens[];
+  public doacoesAtivas: DoacaoImagens[] = [];
+  public doacoesReservadas: DoacaoImagens[] = [];
+  public doacoesInativas: DoacaoImagens[] = [];
   public url: SafeUrl;
 
   constructor(
@@ -29,24 +29,14 @@ export class MinhasDoacoesComponent implements OnInit {
 
   ngOnInit(): void {
     this.url = this.sanitizer.bypassSecurityTrustUrl(this.location.path());
-    this.consultarMinhasDoacoes();
-    console.log(this.url);
-  }
 
-  public abrirEdicaoDoacao(doacaoSelecionada: DoacaoImagens) {
-    const urlComponenteCadastro = '/doacoes/cadastro';
-    this.router.navigateByUrl(urlComponenteCadastro, { state: {doacao: doacaoSelecionada} });
-  }
 
-  public consultarMinhasDoacoes() {
     this.doacaoService.consultarPorStatus('Ativa').subscribe(
       doacoes => {
-        if (doacoes == null) {
-          this.doacoesAtivas = [];
-          return;
+        if (doacoes != null) {
+          this.converterImagens(doacoes);
+          this.doacoesAtivas = doacoes;
         }
-        this.converterImagens(doacoes);
-        this.doacoesAtivas = doacoes;
       },
       erro => {
         const mensagem = 'Não foi possível consultar suas doações ativas.';
@@ -56,12 +46,10 @@ export class MinhasDoacoesComponent implements OnInit {
 
     this.doacaoService.consultarPorStatus('Reservada').subscribe(
       doacoes => {
-        if (doacoes == null) {
-          this.doacoesReservadas = [];
-          return;
+        if (doacoes != null) {
+          this.converterImagens(doacoes);
+          this.doacoesReservadas = doacoes;
         }
-        this.converterImagens(doacoes);
-        this.doacoesReservadas = doacoes;
       },
       erro => {
         const mensagem = 'Não foi possível consultar suas doações reservadas.';
@@ -71,18 +59,21 @@ export class MinhasDoacoesComponent implements OnInit {
 
     this.doacaoService.consultarPorStatus('Inativa').subscribe(
       doacoes => {
-        if (doacoes == null) {
-          this.doacoesInativas = [];
-          return;
+        if (doacoes != null) {
+          this.converterImagens(doacoes);
+          this.doacoesInativas = doacoes;
         }
-        this.converterImagens(doacoes);
-        this.doacoesInativas = doacoes;
       },
       erro => {
         const mensagem = 'Não foi possível consultar suas doações inativas.';
         this.snackBar.open(mensagem, 'Erro', { duration: 5000 });
       }
     );
+  }
+
+  public abrirEdicaoDoacao(doacaoSelecionada: DoacaoImagens) {
+    const urlComponenteCadastro = '/doacoes/cadastro';
+    this.router.navigateByUrl(urlComponenteCadastro, { state: {doacao: doacaoSelecionada} });
   }
 
   private converterImagens(doacoes: DoacaoImagens[]) {
