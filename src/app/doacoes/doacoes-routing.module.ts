@@ -24,7 +24,6 @@ const routes: Routes = [
       },
       {
         path: 'detalhes/:doacaoId',
-        canActivate: [AuthGuard],
         component: ConsultaDetalhesDoacaoComponent,
       },
       {
