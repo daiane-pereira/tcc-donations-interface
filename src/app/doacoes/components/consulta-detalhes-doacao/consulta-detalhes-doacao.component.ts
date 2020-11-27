@@ -5,6 +5,7 @@ import {FormBuilder} from '@angular/forms';
 import {DoacaoService} from '../../../service/doacao.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AuthService} from '../../../service/auth.service';
 
 @Component({
   selector: 'app-consulta-detalhes-doacao',
@@ -23,7 +24,8 @@ export class ConsultaDetalhesDoacaoComponent implements OnInit {
     private activated: ActivatedRoute,
     private snackBar: MatSnackBar,
     public sanitizer: DomSanitizer,
-    private doacaoService: DoacaoService
+    private doacaoService: DoacaoService,
+    private authService: AuthService,
   ) {
   }
 
@@ -47,6 +49,10 @@ export class ConsultaDetalhesDoacaoComponent implements OnInit {
         this.snackBar.open('Erro maroto!', 'Erro', { duration: 5000 });
       }
     );
+  }
+
+  public usuarioAutenticado(): boolean {
+    return !!this.authService.getUsuario();
   }
 
   private formatarLocalizacao() {

@@ -16,7 +16,7 @@
               <p>{{doacao.detalhes}}</p>
             </div>
           </mat-list-item>
-          <mat-list-item>
+          <mat-list-item *ngIf="this.usuarioAutenticado()">
             <div mat-line><mat-label>Quem está doando?</mat-label></div>
             <div mat-line>
               <mat-icon>account_circle</mat-icon> {{doacao.usuario.nome}}
@@ -30,6 +30,9 @@
           </mat-list-item>
         </mat-list>
       </form>
+      <p *ngIf="!usuarioAutenticado()" style="text-align: center">
+        Faça o login para ver informações de contato. <a routerLink="/autenticacao/login">Clique aqui.</a>
+      </p>
     </mat-card-content>
   </mat-card>
 </div>
