@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
 import {DoacaoService} from '../../../service/doacao.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {DomSanitizer} from '@angular/platform-browser';
+import {DomSanitizer, Meta} from '@angular/platform-browser';
 import {AuthService} from '../../../service/auth.service';
 
 @Component({
@@ -24,17 +24,14 @@ export class ConsultaDetalhesDoacaoComponent implements OnInit {
     private activated: ActivatedRoute,
     private snackBar: MatSnackBar,
     public sanitizer: DomSanitizer,
+    public meta: Meta,
     private doacaoService: DoacaoService,
     private authService: AuthService,
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.router);
-    console.log(this.activated);
     this.activated.params.subscribe(params => {
       this.doacaoId = params['doacaoId'];
-      console.log(params);
     });
 
     this.doacaoService.consultarPorId(this.doacaoId).subscribe(
@@ -46,9 +43,15 @@ export class ConsultaDetalhesDoacaoComponent implements OnInit {
         });
       },
       erro => {
-        this.snackBar.open('Erro maroto!', 'Erro', { duration: 5000 });
+        this.snackBar.open('Erro', 'Erro', { duration: 5000 });
       }
     );
+
+    const title = 'Este produto está sendo doado: ' + this.doacao.descricao;
+    const description = 'Quer saber mais informações sobre ele? Acesse o site e confira esses e outros produtos que estão sendo doados.';
+
+    this.meta.updateTag({name: 'og:title', content: title});
+    this.meta.updateTag({name: 'og:description', content: description});
   }
 
   public usuarioAutenticado(): boolean {
