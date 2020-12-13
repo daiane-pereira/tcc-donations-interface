@@ -28,7 +28,6 @@ export class ConsultaDetalhesDoacaoComponent implements OnInit {
     private authService: AuthService,
   ) {}
 
-
   ngOnInit(): void {
     this.activated.params.subscribe(params => {
       this.doacaoId = params['doacaoId'];
@@ -49,13 +48,6 @@ export class ConsultaDetalhesDoacaoComponent implements OnInit {
 
     const title = 'Este produto está sendo doado: ' + this.doacao.descricao;
     const description = 'Quer saber mais informações sobre ele? Acesse o site e confira esses e outros produtos que estão sendo doados.';
-
-    this.meta.updateTag({name: 'og:title', content: title});
-    this.meta.updateTag({name: 'og:description', content: description});
-  }
-
-  public usuarioAutenticado(): boolean {
-    return !!this.authService.getUsuario();
   }
 
   public usuarioAutenticado(): boolean {
