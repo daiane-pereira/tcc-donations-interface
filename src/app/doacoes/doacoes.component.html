@@ -4,7 +4,7 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item *ngIf="!this.usuarioAutenticado()" routerLink="/autenticacao/login">
+      <button mat-menu-item routerLink="/autenticacao/login">
         <span>Entrar</span>
       </button>
       <button mat-menu-item routerLink="/doacoes/consulta">
@@ -23,6 +23,9 @@
 
     <img src="../../assets/logo.png" />
     <span class="spacer"></span>
+    <button *ngIf="this.usuarioAutenticado()" mat-raised-button color="accent" routerLink="/doacoes/cadastro">
+      Doar
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="principal"><router-outlet></router-outlet></div>
