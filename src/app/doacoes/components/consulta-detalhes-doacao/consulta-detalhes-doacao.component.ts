@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
 import {DoacaoService} from '../../../service/doacao.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {DomSanitizer, Meta} from '@angular/platform-browser';
+import {DomSanitizer} from '@angular/platform-browser';
 import {AuthService} from '../../../service/auth.service';
 
 @Component({
@@ -24,10 +24,10 @@ export class ConsultaDetalhesDoacaoComponent implements OnInit {
     private activated: ActivatedRoute,
     private snackBar: MatSnackBar,
     public sanitizer: DomSanitizer,
-    public meta: Meta,
     private doacaoService: DoacaoService,
     private authService: AuthService,
-  ) { }
+  ) {}
+
 
   ngOnInit(): void {
     this.activated.params.subscribe(params => {
@@ -52,6 +52,10 @@ export class ConsultaDetalhesDoacaoComponent implements OnInit {
 
     this.meta.updateTag({name: 'og:title', content: title});
     this.meta.updateTag({name: 'og:description', content: description});
+  }
+
+  public usuarioAutenticado(): boolean {
+    return !!this.authService.getUsuario();
   }
 
   public usuarioAutenticado(): boolean {
