@@ -26,8 +26,8 @@
                       style="border:none;overflow:hidden"
                       scrolling="no"
                       frameborder="0"
-                      allowTransparency="true"
-                      allow="encrypted-media">
+                      allowfullscreen="true"
+                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
                     </iframe>
                   </button>
                 </div>
@@ -46,16 +46,17 @@
                     Editar <mat-icon style="font-size: 20px;">edit</mat-icon>
                   </button>
                   <button mat-button color="primary">
-                    <iframe
-                      [src]="gerarUrlCompartilhamento(doacao)"
-                      width="105"
-                      height="20"
-                      style="border:none;overflow:hidden"
-                      scrolling="no"
-                      frameborder="0"
-                      allowTransparency="true"
-                      allow="encrypted-media">
-                    </iframe>
+<!--                    <iframe-->
+<!--                      [src]="gerarUrlCompartilhamento(doacao)"-->
+<!--                      width="105"-->
+<!--                      height="20"-->
+<!--                      style="border:none;overflow:hidden"-->
+<!--                      scrolling="no"-->
+<!--                      frameborder="0"-->
+<!--                      allowTransparency="true"-->
+<!--                      allow="encrypted-media">-->
+<!--                    </iframe>-->
+                    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fmove-roda.herokuapp.com%2Fdoacoes%2Fdetalhes%2F38&layout=button&size=small&width=105&height=20&appId" width="105" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                   </button>
                 </div>
                 <mat-divider></mat-divider>
