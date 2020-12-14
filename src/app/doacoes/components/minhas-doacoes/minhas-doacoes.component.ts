@@ -91,8 +91,11 @@ export class MinhasDoacoesComponent implements OnInit {
   }
 
   public gerarUrlCompartilhamento(doacao: Doacao) {
+    console.log(this.sanitizer.bypassSecurityTrustResourceUrl(
+      'https://www.facebook.com/plugins/share_button.php?href=https://move-roda.herokuapp.com/doacoes/detalhes/' +
+      doacao.id + '&layout=button&size=small&width=105&height=20&appId'));
     return this.sanitizer.bypassSecurityTrustResourceUrl(
-      "https://www.facebook.com/plugins/share_button.php?href=https://move-roda.herokuapp.com/doacoes/detalhes/" +
-      doacao.id + "&layout=button&size=small&width=105&height=20&appId");
+      'https://www.facebook.com/plugins/share_button.php?href=https://move-roda.herokuapp.com/doacoes/detalhes/' +
+      doacao.id + '&layout=button&size=small&width=105&height=20&appId');
   }
 }

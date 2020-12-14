@@ -26,8 +26,7 @@ export class ConsultaDetalhesDoacaoComponent implements OnInit {
     public sanitizer: DomSanitizer,
     private doacaoService: DoacaoService,
     private authService: AuthService,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.activated.params.subscribe(params => {
