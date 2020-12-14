@@ -18,8 +18,8 @@ import {ConsultaDetalhesDoacaoComponent} from './components/consulta-detalhes-do
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {RouterModule} from '@angular/router';
-import {AuthService} from '../service/auth.service';
 import {_MatMenuDirectivesModule, MatMenuModule} from '@angular/material/menu';
+import {ShareModule} from 'ngx-sharebuttons';
 
 @NgModule({
   declarations: [
@@ -47,6 +47,7 @@ import {_MatMenuDirectivesModule, MatMenuModule} from '@angular/material/menu';
     RouterModule,
     _MatMenuDirectivesModule,
     MatMenuModule,
+    ShareModule,
   ],
 })
 export class DoacoesModule { }

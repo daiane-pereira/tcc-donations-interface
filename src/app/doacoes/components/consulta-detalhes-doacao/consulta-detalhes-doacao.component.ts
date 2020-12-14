@@ -5,6 +5,7 @@ import {FormBuilder} from '@angular/forms';
 import {DoacaoService} from '../../../service/doacao.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AuthService} from '../../../service/auth.service';
 
 @Component({
   selector: 'app-consulta-detalhes-doacao',
@@ -23,16 +24,14 @@ export class ConsultaDetalhesDoacaoComponent implements OnInit {
     private activated: ActivatedRoute,
     private snackBar: MatSnackBar,
     public sanitizer: DomSanitizer,
-    private doacaoService: DoacaoService
+    private doacaoService: DoacaoService,
+    private authService: AuthService,
   ) {
   }
 
   ngOnInit(): void {
-    console.log(this.router);
-    console.log(this.activated);
     this.activated.params.subscribe(params => {
       this.doacaoId = params['doacaoId'];
-      console.log(params);
     });
 
     this.doacaoService.consultarPorId(this.doacaoId).subscribe(
@@ -44,9 +43,13 @@ export class ConsultaDetalhesDoacaoComponent implements OnInit {
         });
       },
       erro => {
-        this.snackBar.open('Erro maroto!', 'Erro', { duration: 5000 });
+        this.snackBar.open('Houve um problema ao consultar a doação.', 'Erro', { duration: 5000 });
       }
     );
+  }
+
+  public usuarioAutenticado(): boolean {
+    return !!this.authService.getUsuario();
   }
 
   private formatarLocalizacao() {
