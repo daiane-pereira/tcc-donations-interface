@@ -6,7 +6,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'donation-ui';
+  title = 'Move a Roda';
 
   constructor() {}
 }

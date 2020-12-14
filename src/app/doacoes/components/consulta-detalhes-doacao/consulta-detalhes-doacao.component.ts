@@ -42,12 +42,9 @@ export class ConsultaDetalhesDoacaoComponent implements OnInit {
         });
       },
       erro => {
-        this.snackBar.open('Erro', 'Erro', { duration: 5000 });
+        this.snackBar.open('Houve um problema ao consultar a doação.', 'Erro', { duration: 5000 });
       }
     );
-
-    const title = 'Este produto está sendo doado: ' + this.doacao.descricao;
-    const description = 'Quer saber mais informações sobre ele? Acesse o site e confira esses e outros produtos que estão sendo doados.';
   }
 
   public usuarioAutenticado(): boolean {

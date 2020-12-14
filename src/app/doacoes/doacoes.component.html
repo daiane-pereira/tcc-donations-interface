@@ -4,7 +4,7 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/autenticacao/login">
+      <button mat-menu-item *ngIf="!this.usuarioAutenticado()" routerLink="/autenticacao/login">
         <span>Entrar</span>
       </button>
       <button mat-menu-item routerLink="/doacoes/consulta">

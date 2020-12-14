@@ -5,7 +5,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import {Location} from '@angular/common';
-import { Doacao } from 'src/app/model/doacao';
+import {Doacao} from 'src/app/model/doacao';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-minhas-doacoes',
@@ -31,45 +32,49 @@ export class MinhasDoacoesComponent implements OnInit {
   ngOnInit(): void {
     this.url = this.sanitizer.bypassSecurityTrustUrl(this.location.path());
 
-
-    this.doacaoService.consultarPorStatus('Ativa').subscribe(
-      doacoes => {
-        if (doacoes != null) {
-          this.converterImagens(doacoes);
-          this.doacoesAtivas = doacoes;
+    setTimeout(() => {
+      this.doacaoService.consultarPorStatus('Ativa').pipe(first()).subscribe(
+        doacoes => {
+          if (doacoes != null) {
+            this.converterImagens(doacoes);
+            this.doacoesAtivas = doacoes;
+          }
+        },
+        erro => {
+          const mensagem = 'Não conseguimos encontrar suas doações ativas.';
+          this.snackBar.open(mensagem, 'Erro', { duration: 5000 });
+          console.log(erro);
         }
-      },
-      erro => {
-        const mensagem = 'Não foi possível consultar suas doações ativas.';
-        this.snackBar.open(mensagem, 'Erro', { duration: 5000 });
-      }
-    );
+      );
 
-    this.doacaoService.consultarPorStatus('Reservada').subscribe(
-      doacoes => {
-        if (doacoes != null) {
-          this.converterImagens(doacoes);
-          this.doacoesReservadas = doacoes;
+      this.doacaoService.consultarPorStatus('Reservada').pipe(first()).subscribe(
+        doacoes => {
+          if (doacoes != null) {
+            this.converterImagens(doacoes);
+            this.doacoesReservadas = doacoes;
+          }
+        },
+        erro => {
+          const mensagem = 'Não conseguimos encontrar suas doações reservadas.';
+          this.snackBar.open(mensagem, 'Erro', { duration: 5000 });
+          console.log(erro);
         }
-      },
-      erro => {
-        const mensagem = 'Não foi possível consultar suas doações reservadas.';
-        this.snackBar.open(mensagem, 'Erro', { duration: 5000 });
-      }
-    );
+      );
 
-    this.doacaoService.consultarPorStatus('Inativa').subscribe(
-      doacoes => {
-        if (doacoes != null) {
-          this.converterImagens(doacoes);
-          this.doacoesInativas = doacoes;
+      this.doacaoService.consultarPorStatus('Inativa').pipe(first()).subscribe(
+        doacoes => {
+          if (doacoes != null) {
+            this.converterImagens(doacoes);
+            this.doacoesInativas = doacoes;
+          }
+        },
+        erro => {
+          const mensagem = 'Não conseguimos encontrar suas doações inativas.';
+          this.snackBar.open(mensagem, 'Erro', { duration: 5000 });
+          console.log(erro);
         }
-      },
-      erro => {
-        const mensagem = 'Não foi possível consultar suas doações inativas.';
-        this.snackBar.open(mensagem, 'Erro', { duration: 5000 });
-      }
-    );
+      );
+    });
   }
 
   public abrirEdicaoDoacao(doacaoSelecionada: DoacaoImagens) {

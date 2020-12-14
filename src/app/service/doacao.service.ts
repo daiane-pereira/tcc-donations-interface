@@ -1,9 +1,9 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { Doacao } from '../model/doacao';
-import { DoacaoImagens } from '../model/doacao-imagens';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {FormGroup} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {Doacao} from '../model/doacao';
+import {DoacaoImagens} from '../model/doacao-imagens';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,6 @@ export class DoacaoService {
 
   private urlBase = 'https://tcc-donations-api.herokuapp.com/doacoes';
   //private urlBase = 'http://localhost:34621/doacoes';
-  private header = new HttpHeaders({ 'credencial': window.sessionStorage.getItem('credencial') });
 
   constructor(
     private httpClient: HttpClient
@@ -30,17 +29,18 @@ export class DoacaoService {
 
   public consultarPorStatus(descricaoStatus: string): Observable<any> {
     const url = this.urlBase + '/status/' + descricaoStatus;
-    return this.httpClient.get<any>(url, { headers: this.header });
+    return this.httpClient.get<any>(url, { headers: { 'credencial': window.sessionStorage.getItem('credencial') } });
   }
 
   public incluir(doacao: Doacao): Observable<DoacaoImagens> {
     this.converterParametrosParaTexto(doacao);
-    return this.httpClient.post<DoacaoImagens>(this.urlBase, doacao, { headers: this.header });
+    return this.httpClient.post<DoacaoImagens>(this.urlBase, doacao,
+      { headers: { 'credencial': window.sessionStorage.getItem('credencial') } });
   }
 
   public alterar(doacaoId: number, doacao: Doacao): Observable<any> {
     const url = this.urlBase + '/' + doacaoId;
-    return this.httpClient.put<Doacao>(url, doacao, { headers: this.header });
+    return this.httpClient.put<Doacao>(url, doacao, { headers: { 'credencial': window.sessionStorage.getItem('credencial') } });
   }
 
   private criarUrlParaConsulta(filtros: FormGroup): string {
